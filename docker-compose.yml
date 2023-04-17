@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   app:
-    image: ghcr.io/kopiro/televideo:latest
+    image: ghcr.io/kopiro/televideo:main
     build:
       context: .
       dockerfile: ./Dockerfile
