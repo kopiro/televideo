@@ -39,6 +39,7 @@ $channel.addEventListener("blur", function () {
     $channel.value = tmpChannelValue;
     tmpChannelValue = null;
   }
+  $page.value = 1;
 
   setScreen($channel.value, $page.value);
 });
@@ -70,15 +71,16 @@ $goButton.addEventListener("click", function () {
 // to the channel and page that the user has entered
 $prevChannel.addEventListener("click", function () {
   const chValue = parseInt($channel.value, 10);
-  if (chValue > 100) {
-    $channel.value = chValue - 1;
-    setScreen($channel.value, $page.value);
-  }
+  if (chValue <= 100) return;
+  $channel.value = chValue - 1;
+  $page.value = 1;
+  setScreen($channel.value, $page.value);
 });
 
 $nextChannel.addEventListener("click", function () {
   const chValue = parseInt($channel.value, 10);
   $channel.value = chValue + 1;
+  $page.value = 1;
   setScreen($channel.value, $page.value);
 });
 
@@ -86,10 +88,9 @@ $nextChannel.addEventListener("click", function () {
 // to the channel and page that the user has entered
 $prevPage.addEventListener("click", function () {
   const pageValue = parseInt($page.value, 10);
-  if (pageValue > 1) {
-    $page.value = pageValue - 1;
-    setScreen($channel.value, $page.value);
-  }
+  if (pageValue <= 1) return;
+  $page.value = pageValue - 1;
+  setScreen($channel.value, $page.value);
 });
 
 $nextPage.addEventListener("click", function () {
