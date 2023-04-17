@@ -2,43 +2,45 @@ body {
   margin: 0;
   padding: 0;
   background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 #screen {
   height: 100vh;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
 }
 
 #controls {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  left: calc(16 / 9 * 100vh);
   text-align: center;
-  padding: 30px;
+  padding: 10px;
   box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
+
 #controls > * {
   margin: 5px;
 }
 
+input {
+  font-size: 18px;
+}
+
 .page-nav {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 38px;
   background-color: black;
   border: 1px solid white;
   color: white;
-  font-size: 32px;
 }
 
 .number {
   width: 90%;
   margin-top: 10px;
-  font-size: 30px;
   background-color: black;
   border: 1px solid white;
   color: white;
@@ -47,11 +49,10 @@ body {
 }
 
 #go {
-  width: 100%;
-  margin-top: 10px;
-  font-size: 30px;
   background-color: blue;
   border: 1px solid white;
   color: white;
+  width: 48px;
+  height: 32px;
   text-align: center;
 }

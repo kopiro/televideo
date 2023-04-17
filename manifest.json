@@ -5,7 +5,7 @@
   "start_url": "https://televideo.kopiro.me", 
   "display": "standalone", 
   "icons": [{ 
-    "src": "icon.png", 
+    "src": "/icon.png", 
     "sizes": "512x512", 
     "type": "image/png" 
   }]
