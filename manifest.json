@@ -1,0 +1,12 @@
+{ 
+
+  "name": "Televideo", 
+  "short_name": "Televideo", 
+  "start_url": "https://televideo.kopiro.me", 
+  "display": "standalone", 
+  "icons": [{ 
+    "src": "icon.png", 
+    "sizes": "512x512", 
+    "type": "image/png" 
+  }]
+}
