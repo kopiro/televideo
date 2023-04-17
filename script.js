@@ -26,22 +26,37 @@ function setScreen(channel, page) {
   }
 }
 
+let tmpChannelValue = null;
+
 // When selecting input $channel, remove value
 $channel.addEventListener("focus", function () {
+  tmpChannelValue = $channel.value;
   $channel.value = "";
 });
 
 $channel.addEventListener("blur", function () {
+  if (!$channel.value && tmpChannelValue) {
+    $channel.value = tmpChannelValue;
+    tmpChannelValue = null;
+  }
+
   setScreen($channel.value, $page.value);
 });
 
+let tmpPageValue = null;
+
 // When selecting input $page, remove value
 $page.addEventListener("focus", function () {
+  tmpPageValue = $page.value;
   $page.value = "";
 });
 
 // On clicking Done on $page, set the screen
 $page.addEventListener("blur", function () {
+  if (!$page.value && tmpPageValue) {
+    $page.value = tmpPageValue;
+    tmpPageValue = null;
+  }
   setScreen($channel.value, $page.value);
 });
 
@@ -54,24 +69,32 @@ $goButton.addEventListener("click", function () {
 // When user clicks on the prev and next button, we should change the screen
 // to the channel and page that the user has entered
 $prevChannel.addEventListener("click", function () {
-  $channel.value = parseInt($channel.value, 10) - 1;
-  setScreen($channel.value, $page.value);
+  const chValue = parseInt($channel.value, 10);
+  if (chValue > 100) {
+    $channel.value = chValue - 1;
+    setScreen($channel.value, $page.value);
+  }
 });
 
 $nextChannel.addEventListener("click", function () {
-  $channel.value = parseInt($channel.value, 10) + 1;
+  const chValue = parseInt($channel.value, 10);
+  $channel.value = chValue + 1;
   setScreen($channel.value, $page.value);
 });
 
 // When user clicks on the prev and next button, we should change the screen
 // to the channel and page that the user has entered
 $prevPage.addEventListener("click", function () {
-  $page.value = parseInt($page.value, 10) - 1;
-  setScreen($channel.value, $page.value);
+  const pageValue = parseInt($page.value, 10);
+  if (pageValue > 1) {
+    $page.value = pageValue - 1;
+    setScreen($channel.value, $page.value);
+  }
 });
 
 $nextPage.addEventListener("click", function () {
-  $page.value = parseInt($page.value, 10) + 1;
+  const pageValue = parseInt($page.value, 10);
+  $page.value = pageValue + 1;
   setScreen($channel.value, $page.value);
 });
 
