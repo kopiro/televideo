@@ -1,4 +1,4 @@
-const $screen = document.querySelector("#screen");
+const $screen = document.querySelector("#screen-img");
 const $channel = document.querySelector("#channel");
 const $page = document.querySelector("#page");
 const $goButton = document.querySelector("#go");
