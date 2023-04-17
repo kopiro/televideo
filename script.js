@@ -75,4 +75,5 @@ $nextPage.addEventListener("click", function () {
   setScreen($channel.value, $page.value);
 });
 
+// Initial page
 setScreen(100, 1);

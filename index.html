@@ -3,7 +3,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="style.css?v=4" rel="stylesheet">
+	<link href="style.css?v=5" rel="stylesheet">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="apple-mobile-web-app-title" content="Televideo">
@@ -14,15 +14,19 @@
 <body>
 	<img id="screen" src="" />
 	<div id="controls">
-		<input type="number" id="channel" class="number" value="100" min="100" />
-		<button id="prevChannel" class="page-nav"><</button>
-		<button id="nextChannel" class="page-nav">></button>
-
-		<input type="number" id="page" class="number"  value="1" />
-		<button id="prevPage" class="page-nav"><</button>
-		<button id="nextPage" class="page-nav">></button>
-
-		<button id="go">vai</button>
+		<div class="blue sub-controls">
+			<input type="number" id="channel" class="number" value="100" min="100" />
+			<button id="prevChannel" class="page-nav"><</button>
+			<button id="nextChannel" class="page-nav">></button>
+		</div>
+		<div class="green sub-controls">
+			<input type="number" id="page" class="number"  value="1" />
+			<button id="prevPage" class="page-nav"><</button>
+			<button id="nextPage" class="page-nav">></button>
+		</div>
+		<div class="red sub-controls">
+			<button id="go">vai</button>
+		</div>
 	</div>
 	<script src="script.js?v=4"></script>
 </body>
