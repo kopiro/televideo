@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+#screen {
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(16 / 9 * 100vh);
+  text-align: center;
+  padding: 30px;
+  box-sizing: border-box;
+}
+#controls > * {
+  margin: 5px;
+}
+
+.page-nav {
+  width: 64px;
+  height: 64px;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  font-size: 32px;
+}
+
+.number {
+  width: 90%;
+  margin-top: 10px;
+  font-size: 30px;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  padding: 5px;
+  text-align: center;
+}
+
+#go {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 30px;
+  background-color: blue;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+}
