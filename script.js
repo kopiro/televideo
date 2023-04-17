@@ -12,7 +12,7 @@ const BASE_URL =
   "https://www.televideo.rai.it/televideo/pub/tt4web/Nazionale/16_9_page-";
 
 function buildImgUrl(channel, page) {
-  if (page === 1) {
+  if (page == 1) {
     return BASE_URL + channel + ".png";
   }
   return BASE_URL + channel + "." + page + ".png";
