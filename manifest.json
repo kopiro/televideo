@@ -2,7 +2,7 @@
 
   "name": "Televideo", 
   "short_name": "Televideo", 
-  "start_url": "https://televideo.kopiro.me", 
+  "start_url": "https://github.kopiro.io/televideo", 
   "display": "standalone", 
   "icons": [{ 
     "src": "/icon.png", 
