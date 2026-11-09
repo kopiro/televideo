@@ -20,17 +20,16 @@ function setup() {
       select() { this.selected = true; }, focus() { this.focused = true; },
     };
   }
-  const shortcuts = [100, 101, 200].map(channel => Object.assign(element(`shortcut-${channel}`), { dataset: { channel: String(channel) } }));
   const context = vm.createContext({
     URL, AbortController,
     setTimeout(callback) { timers.set(++timerId, callback); return timerId; },
     clearTimeout(id) { timers.delete(id); },
-    document: { querySelector: element, querySelectorAll: () => shortcuts },
+    document: { querySelector: element },
     fetch(url, options) { return new Promise((resolve, reject) => requests.push({ url, options, resolve, reject })); },
     Image: class { constructor() { images.push(this); } },
   });
   vm.runInContext(source, context);
-  return { elements, requests, images, timers, shortcuts, setScreen: context.setScreen,
+  return { elements, requests, images, timers, setScreen: context.setScreen,
     submit() { elements['#page-form'].listeners.submit({ preventDefault() {} }); },
     click(selector) { elements[selector].listeners.click(); } };
 }
@@ -146,19 +145,13 @@ test('navigation clamps both boundaries, resets subpage only on page navigation,
   const count = app.requests.length; app.click('#nextChannel'); app.click('#nextPage');
   assert.equal(app.requests.length, count);
 });
-test('refresh retries the selected subpage with fresh metadata and a new image URL', async () => {
+test('Go reloads the selected subpage with fresh metadata and image', async () => {
   const app = setup(); app.setScreen(100, 2); await load(app);
-  app.elements['#channel'].value = '500'; app.click('#refresh');
+  app.submit();
   assert.match(app.requests.at(-1).url, /\/100\/1$/);
   assert.equal(app.requests.at(-1).options.cache, 'no-store');
   respond(app.requests.at(-1)); await flush();
   assert.ok(new URL(app.images.at(-1).src).searchParams.has('_tv'));
-});
-test('shortcuts reset subpage and expose the active page', () => {
-  const app = setup(); app.setScreen(101, 3); app.shortcuts[2].listeners.click();
-  assert.match(app.requests.at(-1).url, /\/200\/0$/);
-  assert.equal(app.shortcuts[2].attributes['aria-current'], 'page');
-  assert.equal(app.shortcuts[0].attributes['aria-current'], undefined);
 });
 test('install manifest stays within the GitHub Pages project', () => {
   const manifest = JSON.parse(readFileSync(path.join(__dirname, '../manifest.json'), 'utf8'));

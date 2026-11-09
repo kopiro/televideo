@@ -3,75 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#101416">
-  <meta name="description" content="Il Televideo Rai, con comandi semplici e grandi. Sfoglia le pagine dal telefono, dal tablet o dal computer.">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Sfoglia le pagine di Rai Televideo.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Televideo">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="icon" type="image/png" href="icon.png">
-  <link rel="stylesheet" href="style.css?v=12">
-  <script src="script.js?v=9" defer></script>
+  <link rel="stylesheet" href="style.css?v=13">
+  <script src="script.js?v=10" defer></script>
   <title>Televideo</title>
 </head>
 <body>
-  <div class="app">
-    <header class="masthead">
-      <a class="brand" href="./" aria-label="Televideo, pagina iniziale">
-        <span class="brand-mark" aria-hidden="true">T<span>V</span></span>
-        <span>televideo<span class="brand-dot">.</span></span>
-      </a>
-      <span class="edition">EDIZIONE NAZIONALE</span>
-    </header>
-    <main class="reader">
-      <section class="viewer" aria-label="Pagina Televideo">
-        <div class="viewer-bar">
-          <h1 id="current-page">Pagina 100 <span>/ 01</span></h1>
-          <button id="refresh" class="quiet-button" type="button" aria-label="Ricarica la pagina">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6.1 6.1A8 8 0 0 1 20 12M4 12a8 8 0 0 0 13.9 5.9"/></svg>
-            <span>Ricarica</span>
-          </button>
-        </div>
-        <div id="screen" aria-busy="true">
-          <img id="screen-img" alt="" width="644" height="400" hidden>
-          <div id="screen-feedback">
-            <span class="feedback-symbol" aria-hidden="true">···</span>
-            <p id="screen-status" role="status" aria-live="polite">Caricamento della pagina…</p>
-            <button id="retry" class="secondary-button" type="button" hidden>Riprova</button>
+  <main>
+    <div id="screen" aria-label="Pagina Televideo" aria-busy="true">
+      <img id="screen-img" alt="" width="644" height="400" hidden>
+      <div id="screen-feedback">
+        <p id="screen-status" role="status" aria-live="polite">Caricamento…</p>
+        <button id="retry" type="button" hidden>Riprova</button>
+      </div>
+    </div>
+    <form id="page-form" aria-label="Comandi Televideo" novalidate>
+      <div class="controls">
+        <div class="control-group">
+          <label for="channel">Pagina</label>
+          <div class="stepper">
+            <button id="prevChannel" type="button" aria-label="Pagina precedente">‹</button>
+            <input id="channel" name="channel" type="text" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" value="100" autocomplete="off" enterkeyhint="go" aria-describedby="form-error">
+            <button id="nextChannel" type="button" aria-label="Pagina successiva">›</button>
           </div>
         </div>
-        <div class="viewer-footer"><span id="update-label">Le pagine originali di Rai Televideo</span><span class="color-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
-      </section>
-      <aside class="remote" aria-label="Comandi di navigazione">
-        <div class="remote-heading"><span class="eyebrow">IL TUO TELECOMANDO</span><h2>Dove vuoi andare?</h2></div>
-        <form id="page-form" novalidate>
-          <div class="fields">
-            <div class="field"><label for="channel">Pagina</label><input id="channel" name="channel" type="text" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" value="100" autocomplete="off" enterkeyhint="go" aria-describedby="form-error"></div>
-            <div class="field"><label for="page">Sottopagina</label><input id="page" name="page" type="text" inputmode="numeric" pattern="[0-9]{1,2}" maxlength="2" value="1" autocomplete="off" enterkeyhint="go" aria-describedby="form-error"></div>
+        <div class="control-group">
+          <label for="page">Sottopagina</label>
+          <div class="stepper">
+            <button id="prevPage" type="button" aria-label="Sottopagina precedente">−</button>
+            <input id="page" name="page" type="text" inputmode="numeric" pattern="[0-9]{1,2}" maxlength="2" value="1" autocomplete="off" enterkeyhint="go" aria-describedby="form-error">
+            <button id="nextPage" type="button" aria-label="Sottopagina successiva">+</button>
           </div>
-          <p id="form-error" class="form-error" role="alert" hidden></p>
-          <button id="go" class="primary-button" type="submit">Vai alla pagina <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-        </form>
-        <div class="navigation">
-          <div class="nav-group"><span class="nav-label">Sfoglia le pagine</span><div class="button-pair">
-            <button id="prevChannel" type="button" aria-label="Pagina precedente"><span aria-hidden="true">←</span> Indietro</button>
-            <button id="nextChannel" type="button" aria-label="Pagina successiva">Avanti <span aria-hidden="true">→</span></button>
-          </div></div>
-          <div class="nav-group"><span class="nav-label">Sottopagina</span><div class="button-pair">
-            <button id="prevPage" type="button" aria-label="Sottopagina precedente"><span aria-hidden="true">−</span> Precedente</button>
-            <button id="nextPage" type="button" aria-label="Sottopagina successiva"><span aria-hidden="true">+</span> Successiva</button>
-          </div></div>
         </div>
-        <nav class="shortcuts" aria-label="Pagine rapide"><span class="eyebrow">A PORTATA DI TOCCO</span><div class="shortcut-grid">
-          <button type="button" data-channel="100"><span>100</span> Indice</button>
-          <button type="button" data-channel="101"><span>101</span> Ultim’ora</button>
-          <button type="button" data-channel="200"><span>200</span> Sport</button>
-        </div></nav>
-      </aside>
-    </main>
-    <footer class="app-footer"><span>Il teletext di sempre. Un tocco più semplice.</span><a href="https://www.rainews.it/televideo" target="_blank" rel="noopener noreferrer">Fonte: Rai Televideo <span aria-hidden="true">↗</span></a></footer>
-    <noscript><p class="noscript">Attiva JavaScript per sfogliare le pagine oppure visita <a href="https://www.rainews.it/televideo">Rai Televideo</a>.</p></noscript>
-  </div>
+        <button id="go" type="submit" aria-label="Vai alla pagina o ricarica">Vai</button>
+      </div>
+      <p id="form-error" role="alert" hidden></p>
+    </form>
+    <noscript>Attiva JavaScript per visualizzare il Televideo.</noscript>
+  </main>
 </body>
 </html>

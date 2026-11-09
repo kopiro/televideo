@@ -12,7 +12,6 @@ const retry = $("#retry");
 const channelInput = $("#channel");
 const pageInput = $("#page");
 const formError = $("#form-error");
-const shortcuts = [...document.querySelectorAll("[data-channel]")];
 const state = { channel: 100, page: 1 };
 let activeRequest = null;
 
@@ -30,15 +29,11 @@ function clearValidation() {
 function renderSelection() {
   channelInput.value = String(state.channel);
   pageInput.value = String(state.page);
-  $("#current-page").textContent = `Pagina ${state.channel} / ${String(state.page).padStart(2, "0")}`;
   $("#prevChannel").disabled = state.channel <= 100;
   $("#nextChannel").disabled = state.channel >= 899;
   $("#prevPage").disabled = state.page <= 1;
   $("#nextPage").disabled = state.page >= 99;
-  for (const button of shortcuts) {
-    if (Number(button.dataset.channel) === state.channel) button.setAttribute("aria-current", "page");
-    else button.removeAttribute("aria-current");
-  }
+
 }
 
 // Every request owns its fetch, image callbacks and timeout. Superseded work
@@ -52,7 +47,6 @@ function finishRequest(request, errorMessage) {
   if (errorMessage) {
     status.textContent = errorMessage;
     retry.hidden = false;
-    $("#update-label").textContent = "Puoi riprovare o scegliere un’altra pagina.";
   }
   return true;
 }
@@ -72,7 +66,6 @@ async function setScreen(channel, page) {
   retry.hidden = true;
   screen.setAttribute("aria-busy", "true");
   status.textContent = `Caricamento della pagina ${state.channel}…`;
-  $("#update-label").textContent = "Le pagine originali di Rai Televideo";
 
   const request = { controller: new AbortController(), timer: null };
   activeRequest = request;
@@ -103,7 +96,6 @@ async function setScreen(channel, page) {
         `Televideo, pagina ${state.channel}, sottopagina ${state.page}`;
       image.hidden = false;
       feedback.hidden = true;
-      $("#update-label").textContent = `Caricata alle ${new Date().toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}`;
     };
     nextImage.onerror = () => finishRequest(request,
       "Immagine non disponibile. Riprova o scegli un’altra sottopagina.");
@@ -150,11 +142,6 @@ $("#prevChannel").addEventListener("click", () => moveSelection(-1, 0));
 $("#nextChannel").addEventListener("click", () => moveSelection(1, 0));
 $("#prevPage").addEventListener("click", () => moveSelection(0, -1));
 $("#nextPage").addEventListener("click", () => moveSelection(0, 1));
-for (const button of shortcuts) {
-  button.addEventListener("click", () => setScreen(button.dataset.channel, 1));
-}
-for (const button of [$("#refresh"), retry]) {
-  button.addEventListener("click", () => setScreen(state.channel, state.page));
-}
+retry.addEventListener("click", () => setScreen(state.channel, state.page));
 
 setScreen(100, 1);
