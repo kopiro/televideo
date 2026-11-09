@@ -1,12 +1,11 @@
-{ 
-
-  "name": "Televideo", 
-  "short_name": "Televideo", 
-  "start_url": "https://github.kopiro.io/televideo", 
-  "display": "standalone", 
-  "icons": [{ 
-    "src": "/icon.png", 
-    "sizes": "512x512", 
-    "type": "image/png" 
-  }]
+{
+  "name": "Televideo",
+  "short_name": "Televideo",
+  "lang": "it",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101416",
+  "theme_color": "#101416",
+  "icons": [{ "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }]
 }
