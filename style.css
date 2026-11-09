@@ -115,5 +115,7 @@ button:active:not(:disabled) { opacity: .7; }
   .button-pair button span { font-size: 24px; }
   .shortcuts { margin-top: 16px; padding-top: 12px; }
   .viewer-bar { padding: 4px 12px; }
+  #screen { height: calc(100svh - 148px); aspect-ratio: auto; }
+  .viewer-footer { padding: 8px 12px; }
 }
 @media (prefers-reduced-motion: reduce) { button { transition: none; } }
