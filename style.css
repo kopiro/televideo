@@ -10,11 +10,11 @@ main {
   height: 100vh;
   height: 100dvh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 [hidden] { display: none !important; }
-#screen { position: relative; flex: 1; min-height: 0; }
+#screen { position: relative; flex: 1; min-width: 0; min-height: 0; }
 #screen-img { display: block; width: 100%; height: 100%; object-fit: contain; }
 #screen-feedback {
   position: absolute;
@@ -27,15 +27,14 @@ main {
   padding: 16px;
 }
 #screen-status { max-width: 320px; color: #b9b9b9; font-size: 14px; line-height: 1.5; }
-#page-form { flex-shrink: 0; padding: 8px 8px max(8px, env(safe-area-inset-bottom)); background: #111; border-top: 1px solid #292929; }
-.controls { display: flex; align-items: end; justify-content: center; gap: 12px; }
+#page-form { width: 110px; flex-shrink: 0; display: flex; flex-direction: column; overflow-y: auto; padding: 8px 8px max(8px, env(safe-area-inset-bottom)); background: #111; border-left: 1px solid #292929; }
+.controls { display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; margin-block: auto; }
 .control-group label { display: block; color: #aaa; font-size: 11px; margin-bottom: 5px; text-align: center; }
-.stepper { display: flex; align-items: center; gap: 4px; }
+.stepper { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
 button, input { font: inherit; height: 44px; border-radius: 8px; border: 1px solid #444; color: #f5f5f5; background: #222; }
 button { min-width: 44px; padding: 0 10px; cursor: pointer; touch-action: manipulation; transition: background-color 120ms ease; }
 .stepper button { font-size: 25px; padding: 0; }
-input { width: 56px; padding: 0 2px; text-align: center; font: 600 20px ui-monospace, SFMono-Regular, Consolas, monospace; background: #080808; }
-#page { width: 40px; }
+input { grid-column: 1 / -1; grid-row: 1; width: 100%; padding: 0 2px; text-align: center; font: 600 20px ui-monospace, SFMono-Regular, Consolas, monospace; background: #080808; }
 #go { font-size: 14px; font-weight: 600; background: #e8e8e8; color: #111; border-color: #e8e8e8; }
 #retry { font-size: 14px; }
 button:disabled { opacity: .3; cursor: default; }
@@ -44,14 +43,4 @@ button:active:not(:disabled) { background: #555; }
 input[aria-invalid="true"] { border-color: #ffb4ac; }
 #form-error { margin: 8px 0 0; text-align: center; color: #ffb4ac; font-size: 13px; }
 @media (hover: hover) { button:hover:not(:disabled) { background: #383838; } #go:hover { background: #fff; } }
-@media (max-width: 370px) {
-  .controls { gap: 8px; }
-  .stepper { gap: 2px; }
-  input { width: 48px; }
-  #page { width: 32px; }
-}
-@media (max-width: 330px) {
-  .controls { flex-wrap: wrap; }
-  #go { width: 100%; }
-}
 @media (prefers-reduced-motion: reduce) { button { transition: none; } }

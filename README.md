@@ -3,7 +3,7 @@
 [A touch-friendly reader for Rai Televideo](https://kopiro.github.io/televideo/).
 
 Enter a page (100–899) and subpage (1–99), then press **Vai** or Enter.
-Use the arrow buttons to browse, or press **Vai** again to reload the current page. The layout supports portrait and landscape screens.
+Use the arrow buttons to browse, or press **Vai** again to reload the current page. The controls stay in a compact column on the right in both portrait and landscape.
 Not every page or subpage exists; unavailable content shows a retry option.
 
 The app is plain HTML, CSS and JavaScript, with no build step or dependencies.
