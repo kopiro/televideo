@@ -3,7 +3,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="style.css?v=8" rel="stylesheet">
+	<link href="style.css?v=9" rel="stylesheet">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="apple-mobile-web-app-title" content="Televideo">
@@ -13,7 +13,8 @@
 </head>
 <body>
 	<div id="screen">
-		<img id="screen-img" />
+		<img id="screen-img" alt="Televideo" hidden />
+		<p id="screen-status" role="status" aria-live="polite"></p>
 	</div>
 	<div id="controls">
 		<div class="blue sub-controls">
@@ -33,6 +34,6 @@
 	<div id="rotate">
 		<div id="rotate-text">Benvenuto in <b>Televideo</b>, per usare l'app, ruota il telefono.</div>
 	</div>
-	<script src="script.js?v=7"></script>
+	<script src="script.js?v=8"></script>
 </body>
 </html>
